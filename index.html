@@ -11,19 +11,28 @@
 </div>
 
 <script>
-    const space = '960px';
+    const space = '1000px';
+    let grid = 16;
+    etch_a_sketch(16)
 
-    function createGrid(){
+    function etch_a_sketch(num){
+        createGrid(num)
+    }
+
+    function createGrid(num){
         const container = document.querySelector('#container');
         var i = 0;
-        while (i < 16){
+        while (i < num){
             const row = document.createElement('div');
             row.setAttribute('class', 'row');
             var j = 0;
-            while (j < 16){
+            while (j < num){
                 const col = document.createElement('div');
-                col.style.height = '25px';
-                col.style.width = '25px';
+                const px = Math.round(1000 / num);
+                console.log(px);
+                col.style.height = px.toString(10)+'px';
+                console.log(col.style.height);
+                col.style.width = px.toString(10)+'px';
                 col.style.border = "thin dotted red";
                 col.style.cssFloat = "left";
                 col.setAttribute('class', 'cell');
@@ -36,11 +45,11 @@
             row.style.clear='left';
             container.appendChild(row);
             i++;
-        }
+        }sketch();
 
     }
 
-    createGrid();
+    createGrid(16);
 
     function sketch(){
         let cells = document.querySelectorAll('.cell');
@@ -91,7 +100,7 @@
         text_form.appendChild(input_btn);
 
     }
-    createInput();
+
 
     function clear(){
         const clr = document.querySelector('.clear_btn');
@@ -99,18 +108,18 @@
             let cells = document.querySelectorAll('.cell');
             console.log(cells);
             cells.forEach((cell) =>{
-                cell.style.backgroundColor = 'transparent';
+                cell.remove();
             });
-        })
+            var num = prompt("Enter n by n:", "16");
+            console.log(num);
+            createGrid(num);
+
+        });
 
     }
     clear();
 
-    function reSizeGrid(){
-       const r = document.getElementById('num').value;
-       console.log(r);
-    }
-    reSizeGrid();
+
 
 
 
