@@ -21,14 +21,17 @@ function createGrid(num){
             col.style.cssFloat = "left";
             col.setAttribute('class', 'cell');
             row.setAttribute('class', 'col');
-            j++;
-            if (j === num){
+            if (j === num -1){
                 col.style.borderRight = "thin solid black";
             }
             if(i === num - 1){
                 col.style.borderBottom="thin solid black";
             }
             row.appendChild(col);
+            j++;
+
+
+
 
         }
         row.style.clear='left';
